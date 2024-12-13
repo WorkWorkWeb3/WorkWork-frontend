@@ -2,9 +2,13 @@ import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import LanguageSwitch from './LanguageSwitch'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useState } from 'react'
+import { Menu } from 'lucide-react'
 
 export default function Header() {
   const { language } = useLanguage()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
     <header className="fixed w-full z-50 bg-[#000033]/80 backdrop-blur-sm border-b border-cyan-500/20">
       <div className="container mx-auto px-4 py-4">
@@ -12,7 +16,7 @@ export default function Header() {
           <Link href="/" className="text-2xl font-bold text-white">
             WorkWork
           </Link>
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className={`md:flex items-center space-y-4 md:space-y-0 md:space-x-6 ${isMenuOpen ? 'flex flex-col absolute top-full left-0 w-full bg-[#000033] p-4' : 'hidden'}`}>
             <Link href="#" className="text-gray-300 hover:text-cyan-500 transition-colors">
               {language === 'en' ? 'Community' : '社区'}
             </Link>
@@ -30,6 +34,9 @@ export default function Header() {
             </Button>
             <Button className="bg-[#00ffff] text-black hover:bg-[#00ffff]/90">
               {language === 'en' ? 'Post a Job' : '发布工作'}
+            </Button>
+            <Button variant="ghost" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              <Menu />
             </Button>
           </div>
         </div>

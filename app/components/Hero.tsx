@@ -17,11 +17,11 @@ export default function Hero() {
   const { language } = useLanguage()
 
   return (
-    <section className="pt-32 pb-20 px-4 text-center relative">
-      <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-[#00ff9d]">
+    <section className="pt-24 md:pt-32 pb-16 md:pb-20 px-4 text-center relative">
+      <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-[#00ff9d]">
         {content[language].title}
       </h1>
-      <p className="text-xl text-white max-w-3xl mx-auto mb-8">
+      <p className="text-lg md:text-xl text-white max-w-3xl mx-auto mb-8">
         {content[language].description}
       </p>
     </section>

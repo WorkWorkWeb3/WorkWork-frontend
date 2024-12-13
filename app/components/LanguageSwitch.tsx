@@ -1,18 +1,23 @@
 'use client'
 
 import { useLanguage } from '../contexts/LanguageContext'
-import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Globe } from 'lucide-react'
 
 export default function LanguageSwitch() {
   const { language, setLanguage } = useLanguage()
 
   return (
-    <Button
-      onClick={() => setLanguage(language === 'en' ? 'zh' : 'en')}
-      className="bg-transparent hover:bg-cyan-500/10 text-cyan-500 font-semibold py-2 px-4 border border-cyan-500 rounded"
-    >
-      {language === 'en' ? '中文' : 'English'}
-    </Button>
+    <Select value={language} onValueChange={(value: 'en' | 'zh') => setLanguage(value)}>
+      <SelectTrigger className="w-[130px] bg-transparent text-cyan-500 border-cyan-500 hover:bg-cyan-500/10">
+        <Globe className="mr-2 h-4 w-4" />
+        <SelectValue placeholder="Language" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="en">English</SelectItem>
+        <SelectItem value="zh">中文</SelectItem>
+      </SelectContent>
+    </Select>
   )
 }
 
